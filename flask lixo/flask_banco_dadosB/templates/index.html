@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Teste de Banco de Dados</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            display: flex;
+        }
+
+        section {
+            display: flex;
+            flex: 1;  /* Ocupa todo o espaço disponível à esquerda */
+            flex-direction: column;  /* Empilha os contêineres verticalmente */
+            gap: 10px;  /* Espaçamento entre os contêineres */
+        }
+
+        article {
+            display: flex;
+            flex: 1;  /* Cada contêiner ocupa todo o espaço disponível */
+            border: 1px solid black;
+            align-items: center;
+            justify-content: center;  /* Centraliza o conteúdo */
+            padding: 50px;
+        }
+
+        aside {
+            display: flex;
+            flex: 1.5;  /* Ocupa 1.5 vezes o espaço dos contêineres à esquerda */
+            border: 1px solid black;
+            align-items: flex-start;
+            justify-content: center;  /* Centraliza o conteúdo */
+            margin-left: 10px;
+            padding-top: 50px;
+        }
+
+        table, tr, th, td{
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        .articles {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section>
+
+            <article class="articles">
+                <p>CADASTRAR NOVO ANIMAL</p>
+                <form action="{{ url_for('cadastrar') }}" method="post">
+                    <input type="text" name="nome_incluir" placeholder="NOVO ANIMAL">
+                    <input type="submit" value="ENVIAR">
+                </form>
+            </article>
+
+            <article>
+                <p>ATUALIZAR ANIMAL</p>
+            </article>
+
+            <article>
+                <p>DELETAR ANIMAL</p>
+            </article>
+
+        </section>
+
+        <aside>
+            <table>
+                <tr>
+                    <th colspan="2">TABELA DE ANIMAIS</th>
+                </tr>                
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>    
+                </tr>
+                {% for item in animais %}
+                <tr>
+                    <td>{{item['id_animal']}}</td>
+                    <td>{{item['nome']}}</td>
+                </tr>
+                {% endfor %}                
+            </table>
+        </aside>
+
+    </main>
+
+</body>
+
+</html>
+
